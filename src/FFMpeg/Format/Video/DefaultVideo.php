@@ -90,9 +90,9 @@ abstract class DefaultVideo extends DefaultAudio implements VideoInterface
     }
 
     /**
-     * @param int $nbPasses
-     *
-     * @return X264
+     * @param $nbPasses
+     * @throws InvalidArgumentException
+     * @return $this
      */
     public function setPasses($nbPasses)
     {
