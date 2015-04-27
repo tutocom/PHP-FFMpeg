@@ -32,6 +32,9 @@ abstract class DefaultVideo extends DefaultAudio implements VideoInterface
     /** @var Integer */
     protected $modulus = 16;
 
+    /** @var Integer */
+    protected $passes = 1;
+
     /**
      * {@inheritdoc}
      */
@@ -82,6 +85,21 @@ abstract class DefaultVideo extends DefaultAudio implements VideoInterface
         }
 
         $this->videoCodec = $videoCodec;
+
+        return $this;
+    }
+
+    /**
+     * @param int $nbPasses
+     *
+     * @return X264
+     */
+    public function setPasses($nbPasses)
+    {
+        if (!is_numeric($nbPasses) && $nbPasses < 1) {
+            throw new \InvalidArgumentException('Variable $nbPasses must be an integer.');
+        }
+        $this->nbPasses = $nbPasses;
 
         return $this;
     }
