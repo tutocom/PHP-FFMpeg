@@ -30,8 +30,8 @@ class VideoFilters extends AudioFilters
      * Resizes a video to a given dimension.
      *
      * @param Dimension $dimension
-     * @param string    $mode
-     * @param Boolean   $forceStandards
+     * @param string $mode
+     * @param Boolean $forceStandards
      *
      * @return VideoFilters
      */
@@ -46,7 +46,7 @@ class VideoFilters extends AudioFilters
      * Changes the video framerate.
      *
      * @param FrameRate $framerate
-     * @param type      $gop
+     * @param type $gop
      *
      * @return VideoFilters
      */
@@ -122,13 +122,42 @@ class VideoFilters extends AudioFilters
 
     /**
      * @param string $imagePath
-     * @param array  $coordinates
+     * @param array $coordinates
      *
      * @return $this
      */
     public function watermark($imagePath, array $coordinates = array())
     {
         $this->media->addFilter(new WatermarkFilter($imagePath, $coordinates));
+
+        return $this;
+    }
+
+    /**
+     * @param Integer $partI
+     * @param Integer $partP
+     * @param Integer $partB
+     *
+     * @return $this
+     */
+    public function partitions($partI, $partP, $partB)
+    {
+
+        $this->media->addFilter(new PartitionsFilter($partI, $partP, $partB));
+
+        return $this;
+    }
+
+    /**
+     * @param $fromSc
+     * @param $durationSc
+     * @param int $frameRate
+     *
+     * @return $this
+     */
+    public function fadeout($fromSc, $durationSc, $frameRate = 25)
+    {
+        $this->media->addFilter(new FadeoutFilter($fromSc, $durationSc, $frameRate));
 
         return $this;
     }
