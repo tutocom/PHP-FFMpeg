@@ -1,15 +1,7 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: kant
- * Date: 31/03/15
- * Time: 11:10
- */
+namespace FFMpeg\Filters\Audio;
 
-namespace Tuto\FFMpeg\Filters\Audio;
-
-use FFMpeg\Filters\Audio as FFMpegFilters;
 use FFMpeg\Media\Audio;
 use FFMpeg\Format\AudioInterface;
 
@@ -17,9 +9,9 @@ use FFMpeg\Format\AudioInterface;
  * Making an audio fadout
  *
  * Class FadeoutFilter
- * @package Tuto\FFMpeg\Filters\Audio
+ * @package FFMpeg\Filters\Audio
  */
-class FadeoutFilter implements FFMpegFilters\AudioFilterInterface
+class FadeoutFilter implements AudioFilterInterface
 {
     /**
      * Beginning of the fadout

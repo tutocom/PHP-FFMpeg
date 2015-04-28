@@ -1,14 +1,7 @@
 <?php
 
-/*
- * Author: Quentin
- * Date: 27/03/2015
- * Custom filter
- */
+namespace FFMpeg\Filters\Video;
 
-namespace Tuto\FFMpeg\Filters\Video;
-
-use FFMpeg\Filters\Video as FFMpegFilters;
 use FFMpeg\Media\Video;
 use FFMpeg\Format\VideoInterface;
 
@@ -16,9 +9,9 @@ use FFMpeg\Format\VideoInterface;
  * Adjust the intra-frame compression for each kind of gop's images (I,P and B)
  *
  * Class PartitionsFilter
- * @package Tuto\FFMpeg\Filters\Video
+ * @package FFMpeg\Filters\Video
  */
-class PartitionsFilter implements FFMpegFilters\VideoFilterInterface
+class PartitionsFilter implements VideoFilterInterface
 {
     /**
      * @var int

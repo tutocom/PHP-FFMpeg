@@ -1,15 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kant
- * Date: 31/03/15
- * Time: 11:10
- */
 
+namespace FFMpeg\Filters\Video;
 
-namespace Tuto\FFMpeg\Filters\Video;
-
-use FFMpeg\Filters\Video as FFMpegFilters;
 use FFMpeg\Media\Video;
 use FFMpeg\Format\VideoInterface;
 
@@ -17,9 +9,9 @@ use FFMpeg\Format\VideoInterface;
  * Making a black fadout
  *
  * Class FadeoutFilter
- * @package Tuto\FFMpeg\Filters\Video
+ * @package FFMpeg\Filters\Video
  */
-class FadeoutFilter implements FFMpegFilters\VideoFilterInterface
+class FadeoutFilter implements VideoFilterInterface
 {
     /**
      * Beginning of the fadout

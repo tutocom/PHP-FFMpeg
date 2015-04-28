@@ -1,8 +1,7 @@
 <?php
 
-namespace Tuto\FFMpeg\Filters\Audio;
+namespace FFMpeg\Filters\Audio;
 
-use FFMpeg\Filters\Audio as FFMpegFilters;
 use FFMpeg\Media\Audio;
 use FFMpeg\Format\AudioInterface;
 
@@ -10,9 +9,9 @@ use FFMpeg\Format\AudioInterface;
  * Allow to adjust volume of video
  *
  * Class AudioVolumeFilter
- * @package Tuto\FFMpeg\Filters\Audio
+ * @package FFMpeg\Filters\Audio
  */
-class AudioVolumeFilter implements FFMpegFilters\AudioFilterInterface
+class AudioVolumeFilter implements AudioFilterInterface
 {
     /**
      * Volume in percentage
