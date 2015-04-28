@@ -224,7 +224,8 @@ abstract class AbstractProgressListener extends EventEmitter implements Listener
         return array(
             'percent'   => $this->percent,
             'remaining' => $this->remaining,
-            'rate'      => $this->rate
+            'rate'      => $this->rate,
+            'currentSize' => $this->currentSize
         );
     }
 
