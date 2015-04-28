@@ -11,7 +11,7 @@ use FFMpeg\Format\AudioInterface;
  * Class FadeoutFilter
  * @package FFMpeg\Filters\Audio
  */
-class FadeoutFilter implements AudioFilterInterface
+class AudioFadeoutFilter implements AudioFilterInterface
 {
     /**
      * Beginning of the fadout
