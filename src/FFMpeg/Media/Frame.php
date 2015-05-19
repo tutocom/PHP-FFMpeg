@@ -26,11 +26,18 @@ class Frame extends AbstractMediaType
     /** @var Video */
     private $video;
 
-    public function __construct(Video $video, FFMpegDriver $driver, FFProbe $ffprobe, TimeCode $timecode)
+    /**
+     * false if single shot else frames per seconde to extract
+     * @var int|false
+     */
+    private $fps;
+
+    public function __construct(Video $video, FFMpegDriver $driver, FFProbe $ffprobe, TimeCode $timecode, $fps = false)
     {
         parent::__construct($video->getPathfile(), $driver, $ffprobe);
         $this->timecode = $timecode;
         $this->video = $video;
+        $this->fps = $fps;
     }
 
     /**
@@ -85,25 +92,34 @@ class Frame extends AbstractMediaType
      *
      * @throws RuntimeException
      */
-    public function save($pathfile, $accurate = false)
+    public function save($pathfile, $accurate = false, $scale='110:-1')
     {
         /**
          * might be optimized with http://ffmpeg.org/trac/ffmpeg/wiki/Seeking%20with%20FFmpeg
          * @see http://ffmpeg.org/ffmpeg.html#Main-options
          */
-        if (!$accurate) {
-            $commands = array(
-                '-y', '-ss', (string) $this->timecode,
-                '-i', $this->pathfile,
-                '-vframes', '1',
-                '-f', 'image2'
+        if($this->fps) {
+            $commands = array (
+                '-y', '-i', $this->pathfile,
+                '-ss', (string) $this->timecode,
+                '-vf',
+                "fps={$this->fps},scale='$scale'"
             );
         } else {
-            $commands = array(
-                '-y', '-i', $this->pathfile,
-                '-vframes', '1', '-ss', (string) $this->timecode,
-                '-f', 'image2'
-            );
+            if (!$accurate) {
+                $commands = array(
+                    '-y', '-ss', (string) $this->timecode,
+                    '-i', $this->pathfile,
+                    '-vframes', '1',
+                    '-f', 'image2'
+                );
+            } else {
+                $commands = array(
+                    '-y', '-i', $this->pathfile,
+                    '-vframes', '1', '-ss', (string) $this->timecode,
+                    '-f', 'image2'
+                );
+            }
         }
 
         foreach ($this->filters as $filter) {

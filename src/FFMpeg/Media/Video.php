@@ -177,8 +177,8 @@ class Video extends Audio
      * @param  TimeCode $at
      * @return Frame
      */
-    public function frame(TimeCode $at)
+    public function frame(TimeCode $at, $fps=false)
     {
-        return new Frame($this, $this->driver, $this->ffprobe, $at);
+        return new Frame($this, $this->driver, $this->ffprobe, $at, $fps);
     }
 }

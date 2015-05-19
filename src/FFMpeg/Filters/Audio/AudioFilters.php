@@ -26,4 +26,29 @@ class AudioFilters
 
         return $this;
     }
+
+    /**
+     * @param $percentageVolume
+     *
+     * @return $this
+     */
+    public function volume($percentageVolume)
+    {
+        $this->media->addFilter(new AudioVolumeFilter($percentageVolume));
+
+        return $this;
+    }
+
+    /**
+     * @param $fromSc
+     * @param $durationSc
+     *
+     * @return $this
+     */
+    public function audioFadeout($fromSc, $durationSc)
+    {
+        $this->media->addFilter(new AudioFadeoutFilter($fromSc, $durationSc));
+
+        return $this;
+    }
 }
