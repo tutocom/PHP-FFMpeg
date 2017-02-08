@@ -19,6 +19,9 @@ class X264 extends DefaultVideo
     /** @var boolean */
     private $bframesSupport = true;
 
+    /** @var integer */
+    private $passes = 2;
+
     public function __construct($audioCodec = 'libfaac', $videoCodec = 'libx264')
     {
         $this
@@ -51,7 +54,7 @@ class X264 extends DefaultVideo
      */
     public function getAvailableAudioCodecs()
     {
-        return array('libvo_aacenc', 'libfaac', 'libmp3lame', 'libfdk_aac');
+        return array('aac', 'libvo_aacenc', 'libfaac', 'libmp3lame', 'libfdk_aac');
     }
 
     /**
@@ -60,6 +63,17 @@ class X264 extends DefaultVideo
     public function getAvailableVideoCodecs()
     {
         return array('libx264');
+    }
+
+    /**
+     * @param $passes
+     *
+     * @return X264
+     */
+    public function setPasses($passes)
+    {
+        $this->passes = $passes;
+        return $this;
     }
 
     /**

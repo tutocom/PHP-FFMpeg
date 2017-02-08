@@ -35,6 +35,9 @@ abstract class DefaultVideo extends DefaultAudio implements VideoInterface
     /** @var Integer */
     protected $passes = 1;
 
+    /** @var Array */
+    protected $additionalParamaters;
+
     /**
      * {@inheritdoc}
      */
@@ -110,6 +113,31 @@ abstract class DefaultVideo extends DefaultAudio implements VideoInterface
     public function getModulus()
     {
         return $this->modulus;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAdditionalParameters()
+    {
+        return $this->additionalParamaters;
+    }
+
+    /**
+     * Sets additional parameters.
+     *
+     * @param  array                    $additionalParamaters
+     * @throws InvalidArgumentException
+     */
+    public function setAdditionalParameters($additionalParamaters)
+    {
+        if (!is_array($additionalParamaters)) {
+            throw new InvalidArgumentException('Wrong additionalParamaters value');
+        }
+
+        $this->additionalParamaters = $additionalParamaters;
+
+        return $this;
     }
 
     /**

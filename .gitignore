@@ -1,7 +1,8 @@
-/nbproject/
+#/nbproject/
 /vendor/
 /.idea/*
 /docs/build
 composer.phar
+composer.lock
 phpunit.xml
-
+sami.phar
