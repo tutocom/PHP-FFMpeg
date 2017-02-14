@@ -20,7 +20,7 @@ class X264 extends DefaultVideo
     private $bframesSupport = true;
 
     /** @var integer */
-    private $passes = 2;
+    protected $passes = 2;
 
     public function __construct($audioCodec = 'libfaac', $videoCodec = 'libx264')
     {
