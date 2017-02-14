@@ -58,6 +58,21 @@ class VideoFilters extends AudioFilters
     }
 
     /**
+     * Extract multiple frames from the video
+     *
+     * @param string $frameRate
+     * @param string  $destinationFolder
+     *
+     * @return $this
+     */
+    public function extractMultipleFrames($frameRate = ExtractMultipleFramesFilter::FRAMERATE_EVERY_2SEC, $destinationFolder = __DIR__)
+    {
+        $this->media->addFilter(new ExtractMultipleFramesFilter($frameRate, $destinationFolder));
+
+        return $this;
+    }
+
+    /**
      * Synchronizes audio and video.
      *
      * @return VideoFilters
@@ -94,6 +109,20 @@ class VideoFilters extends AudioFilters
     public function audioResample($rate)
     {
         $this->media->addFilter(new AudioResamplableFilter($rate));
+
+        return $this;
+    }
+
+    /**
+     * Adds padding (black bars) to a video.
+     *
+     * @param Dimension $dimension
+     *
+     * @return VideoFilters
+     */
+    public function pad(Dimension $dimension)
+    {
+        $this->media->addFilter(new PadFilter($dimension));
 
         return $this;
     }
@@ -158,6 +187,20 @@ class VideoFilters extends AudioFilters
     public function fadeout($fromSc, $durationSc, $frameRate = 25)
     {
         $this->media->addFilter(new FadeoutFilter($fromSc, $durationSc, $frameRate));
+
+        return $this;
+    }
+    
+    /**
+     * Applies a custom filter: -vf foo bar
+     *
+     * @param string    $parameters
+     *
+     * @return VideoFilters
+     */
+    public function custom($parameters)
+    {
+        $this->media->addFilter(new CustomFilter($parameters));
 
         return $this;
     }
